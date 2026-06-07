@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "utilus-assignment"
+version = "0.1.0"
+description = "Interview assignment solution"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "pandas>=2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+assignment = "assignment.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/assignment"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "SIM",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
